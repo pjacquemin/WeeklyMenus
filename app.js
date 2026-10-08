@@ -73,7 +73,7 @@ function addIngredient(value=''){
   // Les anciennes recettes gardent leur texte si la quantité n'est pas reconnue.
   const parts=typeof value==='string'?value.match(/^(\d+(?:[.,]\d+)?(?:\s*\/\s*\d+)?(?:\s+(?:kg|g|mg|ml|cl|l|c\. à soupe|c\. à café|branches?|bouquets?|filets?|pavés?))?)\s+(.+)$/i):null;
   const quantity=document.createElement('input');quantity.type='text';quantity.value=typeof value==='object'?value.quantity:parts?parts[1]:'';quantity.placeholder='Ex. : 160 g';quantity.dataset.quantity='';quantity.maxLength=60;
-  const input=document.createElement('input');input.type='text';input.value=typeof value==='object'?value.name:parts?parts[2]:value;input.placeholder='Ex. : riz arborio';input.dataset.ingredient='';input.maxLength=200;input.required=true;
+  const input=document.createElement('input');input.type='text';input.value=typeof value==='object'?value.name:parts?parts[2]:value;input.placeholder='Ex. : riz arborio';input.dataset.ingredient='';input.setAttribute('autocomplete','off');input.maxLength=200;input.required=true;
   const quantityLabel=document.createElement('label');quantityLabel.textContent='Quantité';quantityLabel.append(quantity);
   const ingredientLabel=document.createElement('label');ingredientLabel.textContent='Ingrédient';ingredientLabel.append(input);
   const remove=document.createElement('button');remove.type='button';remove.className='text-button';remove.textContent='Retirer';remove.setAttribute('aria-label','Retirer cet ingrédient');
@@ -83,6 +83,7 @@ function addIngredient(value=''){
   aisle.innerHTML=aisleOptionsHtml(typeof value==='object'?value.category||known?.category||'À classer':known?.category||'À classer');
   input.addEventListener('change',()=>{const match=recipes.flatMap(recipe=>recipe.ingredients).find(item=>typeof item==='object'&&ingredientKey(item.name)===ingredientKey(input.value)&&item.category&&item.category!=='À classer');if(match)aisle.innerHTML=aisleOptionsHtml(match.category);});
   const aisleLabel=document.createElement('label');aisleLabel.textContent='Rayon';aisleLabel.append(aisle);
+  attachIngredientAutocomplete(input,ingredientLabel);
   row.append(quantityLabel,ingredientLabel,aisleLabel,remove);$('ingredient-list').append(row);return input;
 }
 $('add-ingredient').onclick=()=>addIngredient().focus();
@@ -173,3 +174,33 @@ $('ingredient-manager').addEventListener('click',async event=>{
   if(!await save())return;
   renderWeek();renderIngredients();renderRecipes();notify('L’ingrédient a été supprimé des recettes.');
 });
+
+function attachIngredientAutocomplete(input,label){
+  const wrapper=document.createElement('div');wrapper.className='ingredient-autocomplete';
+  const list=document.createElement('div');list.className='ingredient-suggestions';list.hidden=true;list.id=`suggestions-${crypto.randomUUID()}`;list.setAttribute('role','listbox');
+  input.setAttribute('role','combobox');input.setAttribute('aria-autocomplete','list');input.setAttribute('aria-controls',list.id);input.setAttribute('aria-expanded','false');
+  input.replaceWith(wrapper);wrapper.append(input,list);
+  let active=-1;
+  function close(){list.hidden=true;input.setAttribute('aria-expanded','false');input.removeAttribute('aria-activedescendant');active=-1;}
+  function choose(name){input.value=name;input.dispatchEvent(new Event('change'));close();input.focus();}
+  function update(){
+    const query=ingredientKey(input.value);
+    const matches=query?ingredientCatalog().filter(item=>ingredientKey(item.name).includes(query)).slice(0,8):[];
+    active=-1;input.removeAttribute('aria-activedescendant');list.replaceChildren();
+    for(const [index,item] of matches.entries()){
+      const option=document.createElement('button');option.type='button';option.tabIndex=-1;option.id=`${list.id}-${index}`;option.setAttribute('role','option');option.setAttribute('aria-selected','false');option.textContent=item.name;
+      option.addEventListener('mousedown',event=>event.preventDefault());option.onclick=()=>choose(item.name);list.append(option);
+    }
+    list.hidden=!matches.length;input.setAttribute('aria-expanded',String(matches.length>0));
+  }
+  input.addEventListener('input',update);input.addEventListener('focus',update);input.addEventListener('blur',close);
+  input.addEventListener('keydown',event=>{
+    if(event.key==='Escape'){close();return;}
+    if(list.hidden)return;
+    if(event.key==='ArrowDown'||event.key==='ArrowUp'){
+      event.preventDefault();const count=list.children.length;active=(active+(event.key==='ArrowDown'?1:active<0?0:-1)+count)%count;
+      Array.from(list.children).forEach((option,index)=>option.setAttribute('aria-selected',String(index===active)));
+      input.setAttribute('aria-activedescendant',list.children[active].id);list.children[active].scrollIntoView({block:'nearest'});
+    }else if(event.key==='Enter'&&active>=0){event.preventDefault();choose(list.children[active].textContent);}
+  });
+}

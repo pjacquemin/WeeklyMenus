@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "appRoot": "C:\\Users\\pjacquemin\\source\\repos\\WeeklyMenus",
+  "framework": "static-html",
+  "port": 8400,
+  "pid": 11132,
+  "recordedAt": "2026-10-08T13:07:47.360Z",
+  "artifacts": [
+    {
+      "kind": "patched",
+      "path": "index.html",
+      "patch": "live-tag",
+      "markers": [
+        "impeccable-live-start",
+        "data-impeccable-csp-original"
+      ]
+    }
+  ]
+}

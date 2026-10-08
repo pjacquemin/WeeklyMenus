@@ -1,0 +1,198 @@
+{
+  "title": "L’interface de WeeklyMenus",
+  "question": "Choisis une direction pour le planning et la collection de recettes.",
+  "options": [
+    {
+      "materials": [
+        "surfaces mates",
+        "séparateurs fins"
+      ],
+      "risk": "La densité doit rester lisible sur mobile.",
+      "id": "assigned",
+      "label": "Tableau du marché",
+      "thesis": "Une semaine lisible comme le tableau d’un marché, avec les recettes à portée de main.",
+      "palette": [
+        "#F4EFE5",
+        "#234639",
+        "#C65C36"
+      ],
+      "viewport": "Sept lignes de repas, navigation discrète et collection consultable à côté.",
+      "raised": [
+        {
+          "from": "Folio botanique",
+          "raise": "Chaque jour conserve le même alignement pour comparer les repas."
+        },
+        {
+          "from": "Spécimen typographique",
+          "raise": "La grille donne une place stable à chaque information."
+        },
+        {
+          "from": "Guide de jardin",
+          "raise": "Les actions restent immédiatement identifiables."
+        },
+        {
+          "from": "Annuaire de design",
+          "raise": "Les séparateurs structurent une surface continue."
+        },
+        {
+          "from": "Champ de données",
+          "raise": "Les quantités s’alignent pour une lecture rapide."
+        }
+      ],
+      "comp": ".impeccable/mocks/decision/assigned.webp"
+    },
+    {
+      "materials": [
+        "surfaces mates",
+        "séparateurs fins"
+      ],
+      "risk": "Familier et efficace, mais moins distinctif.",
+      "id": "pick",
+      "label": "Carnet de cuisine",
+      "thesis": "Un carnet clair et chaleureux qui rapproche planning et recettes.",
+      "palette": [
+        "#FAF6EE",
+        "#303C32",
+        "#AD513A"
+      ],
+      "viewport": "Planning à gauche, recette sélectionnée à droite.",
+      "comp": ".impeccable/mocks/decision/pick.webp"
+    },
+    {
+      "materials": [
+        "surfaces mates",
+        "séparateurs fins"
+      ],
+      "risk": "La densité doit rester lisible sur mobile.",
+      "id": "catalog",
+      "label": "Collection à parcourir",
+      "verdict": "competitive",
+      "thesis": "Les recettes se parcourent en rangées ; le planning reste accessible.",
+      "palette": [
+        "#20231F",
+        "#FAF6EE",
+        "#A7BA83"
+      ],
+      "viewport": "Une collection par catégories et un volet de sept repas.",
+      "case": "La collection est facile à explorer ; le planning est moins immédiat.",
+      "comp": ".impeccable/mocks/decision/catalog.webp"
+    },
+    {
+      "materials": [
+        "surfaces mates",
+        "séparateurs fins"
+      ],
+      "risk": "La densité doit rester lisible sur mobile.",
+      "id": "botanical",
+      "label": "Folio botanique",
+      "verdict": "declined",
+      "thesis": "Une traduction graphique du planning et de ses ingrédients.",
+      "palette": [
+        "#F3EDDF",
+        "#202820"
+      ],
+      "viewport": "Sept repas avec leurs ingrédients.",
+      "case": "Moins proche de l’usage culinaire et moins clair pour planifier.",
+      "kept": "Rythme constant entre les jours."
+    },
+    {
+      "materials": [
+        "surfaces mates",
+        "séparateurs fins"
+      ],
+      "risk": "La densité doit rester lisible sur mobile.",
+      "id": "garden",
+      "label": "Guide de jardin",
+      "verdict": "declined",
+      "thesis": "Une traduction graphique du planning et de ses ingrédients.",
+      "palette": [
+        "#8ED462",
+        "#202820"
+      ],
+      "viewport": "Sept repas avec leurs ingrédients.",
+      "case": "Moins proche de l’usage culinaire et moins clair pour planifier.",
+      "kept": "Actions clairement différenciées."
+    },
+    {
+      "materials": [
+        "surfaces mates",
+        "séparateurs fins"
+      ],
+      "risk": "La densité doit rester lisible sur mobile.",
+      "id": "grid",
+      "label": "Spécimen typographique",
+      "verdict": "declined",
+      "thesis": "Une traduction graphique du planning et de ses ingrédients.",
+      "palette": [
+        "#FFFFFF",
+        "#202820"
+      ],
+      "viewport": "Sept repas avec leurs ingrédients.",
+      "case": "Moins proche de l’usage culinaire et moins clair pour planifier.",
+      "kept": "Grille stricte et lisible."
+    },
+    {
+      "materials": [
+        "surfaces mates",
+        "séparateurs fins"
+      ],
+      "risk": "La densité doit rester lisible sur mobile.",
+      "id": "annual",
+      "label": "Annuaire de design",
+      "verdict": "declined",
+      "thesis": "Une traduction graphique du planning et de ses ingrédients.",
+      "palette": [
+        "#F5F4F6",
+        "#202820"
+      ],
+      "viewport": "Sept repas avec leurs ingrédients.",
+      "case": "Moins proche de l’usage culinaire et moins clair pour planifier.",
+      "kept": "Séparateurs et surface continue."
+    },
+    {
+      "materials": [
+        "surfaces mates",
+        "séparateurs fins"
+      ],
+      "risk": "La densité doit rester lisible sur mobile.",
+      "id": "data",
+      "label": "Champ de données",
+      "verdict": "declined",
+      "thesis": "Une traduction graphique du planning et de ses ingrédients.",
+      "palette": [
+        "#FFFFFF",
+        "#202820"
+      ],
+      "viewport": "Sept repas avec leurs ingrédients.",
+      "case": "Moins proche de l’usage culinaire et moins clair pour planifier.",
+      "kept": "Alignement des quantités."
+    }
+  ],
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  },
+  "steer": true,
+  "canon": true,
+  "canonCard": {
+    "materials": [
+      "surfaces mates",
+      "séparateurs fins"
+    ],
+    "risk": "Une présentation familière, peu distinctive.",
+    "label": "Interface classique",
+    "thesis": "Un planning et une collection dans une interface web conventionnelle.",
+    "palette": [
+      "#FFFFFF",
+      "#243529",
+      "#43815C"
+    ],
+    "viewport": "Navigation latérale, planning et fiches de recettes."
+  },
+  "buildPath": {
+    "value": "code",
+    "toggle": true
+  }
+}

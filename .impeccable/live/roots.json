@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "appRoot": "C:\\Users\\pjacquemin\\source\\repos\\WeeklyMenus",
+  "repoRoot": "C:\\Users\\pjacquemin\\source\\repos\\WeeklyMenus",
+  "contextRoot": "C:\\Users\\pjacquemin\\source\\repos\\WeeklyMenus",
+  "sessionRoot": "C:\\Users\\pjacquemin\\source\\repos\\WeeklyMenus\\.impeccable\\live",
+  "productPath": "C:\\Users\\pjacquemin\\source\\repos\\WeeklyMenus\\PRODUCT.md",
+  "designPath": "C:\\Users\\pjacquemin\\source\\repos\\WeeklyMenus\\DESIGN.md",
+  "resolvedFrom": "target:index.html"
+}
